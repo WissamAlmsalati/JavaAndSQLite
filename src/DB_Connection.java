@@ -8,7 +8,7 @@ public class DB_Connection {
     private Connection conn = null; 
     private Statement stmt = null; 
 
-    //!Constructor
+    //!Create Connection
     public void connection() {
         try {
             Class.forName("org.sqlite.JDBC");
