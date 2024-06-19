@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 
-//!To understand how to operate, open a README.md file in Preview
+//?To understand how to operate, open a README.md file in Preview
 
 public class Main {
 
@@ -10,11 +10,11 @@ public class Main {
         DB_Connection dbConnection = new DB_Connection();
 
         try {
-            dbConnection.connect(); 
+            dbConnection.connection(); // Establish the connection
 
             Scanner scanner = new Scanner(System.in);
 
-           
+            while (true) {
                 System.out.println("Choose an operation:");
                 System.out.println("1. Create Table");
                 System.out.println("2. Drop Table");
@@ -65,7 +65,7 @@ public class Main {
                     default:
                         System.out.println("Invalid choice. Please try again.");
                 }
-            
+            }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

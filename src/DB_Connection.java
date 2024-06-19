@@ -8,18 +8,19 @@ public class DB_Connection {
     private Connection conn = null; 
     private Statement stmt = null; 
 
-    //!Create a conniction
-
-    public void connect() { 
+    //!Constructor
+    public void connection() {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:your_database_file.db"); // Replace with your database file path
+            Class.forName("org.sqlite.JDBC");
+            conn = DriverManager.getConnection("jdbc:sqlite:/home/wissam/Music/JavaAndSQLite/src/SqliteJavaDB.db");
             System.out.println("Connected to SQLite database.");
-
-            stmt = conn.createStatement(); 
-        } catch (SQLException e) {
-            System.err.println("SQL Error: " + e.getMessage());
+            stmt = conn.createStatement();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println("Error during connection: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+    
 
     //!Close Conniction
     public void closeConnection() {
