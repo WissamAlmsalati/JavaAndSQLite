@@ -25,10 +25,10 @@ This Java program demonstrates how to connect to an SQLite database using JDBC.
 
 2. **Compile `Main.java`**:
    ```cmd
-   javac -cp "lib\sqlite-jdbc-3.5.8.jar" -d bin src\Main.java
+   javac -cp "lib/sqlite-jdbc-3.5.8.jar:lib/slf4j-api-1.7.36.jar" -d bin src/DB_Connection.java src/DBOperations.java src/Main.java
 3. **Run Main File**
    ```cmd
-   java -cp "bin;lib\sqlite-jdbc-3.5.8.jar" Main
+   java -cp "bin;lib/sqlite-jdbc-3.5.8.jar:lib/slf4j-api-1.7.36.jar" Main
 
 
 
@@ -39,10 +39,10 @@ This Java program demonstrates how to connect to an SQLite database using JDBC.
 
 2. **Compile Main**
    ```cmd 
-   javac -cp "lib/sqlite-jdbc-3.5.8.jar" -d bin src/Main.java
+    javac -cp "lib/sqlite-jdbc-3.5.8.jar:lib/slf4j-api-1.7.36.jar" -d bin src/DB_Connection.java src/DBOperations.java src/Main.java
 
 3. **Run Main File**
    ```cmd
-   java -cp "bin:lib/sqlite-jdbc-3.5.8.jar" Main
+   java -cp "bin:lib/sqlite-jdbc-3.5.8.jar:lib/slf4j-api-1.7.36.jar" Main
 
 # JavaAndSQLite
