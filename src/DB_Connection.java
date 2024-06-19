@@ -8,7 +8,7 @@ public class DB_Connection {
     private Connection conn = null; 
     private Statement stmt = null; 
 
-    //?Create a conniction
+    //!Create a conniction
 
     public void connect() { 
         try {
@@ -21,7 +21,7 @@ public class DB_Connection {
         }
     }
 
-    //?Close Conniction
+    //!Close Conniction
     public void closeConnection() {
         try {
             if (conn != null && !conn.isClosed()) { 
@@ -34,7 +34,7 @@ public class DB_Connection {
     }
 
 
-    //?SQL Queries
+    //!SQL Queries
     
     public void createTable(String tableName) { 
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (ID INTEGER PRIMARY KEY, NAME TEXT NOT NULL)";

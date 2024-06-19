@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 
-//?To understand how to operate, open a README.md file in Preview
+//!To understand how to operate, open a README.md file in Preview
 
 public class Main {
 
