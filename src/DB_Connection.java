@@ -3,13 +3,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DB_Connection {
+public class DB_Connection implements IDatabaseOperations {
 
-    private Connection conn = null; 
-    private Statement stmt = null; 
+    private Connection conn = null;
+    private Statement stmt = null;
 
-    //!Create Connection
-    public void connection() {
+    // Create Connection
+    @Override
+    public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:/home/wissam/Music/JavaAndSQLite/src/SqliteJavaDB.db");
@@ -20,12 +21,11 @@ public class DB_Connection {
             e.printStackTrace();
         }
     }
-    
 
-    //!Close Conniction
+    // Close Connection
     public void closeConnection() {
         try {
-            if (conn != null && !conn.isClosed()) { 
+            if (conn != null && !conn.isClosed()) {
                 conn.close();
                 System.out.println("Connection closed.");
             }
@@ -34,10 +34,9 @@ public class DB_Connection {
         }
     }
 
-
-    //!SQL Queries
-    
-    public void createTable(String tableName) { 
+    // SQL Queries
+    @Override
+    public void createTable(String tableName) {
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (ID INTEGER PRIMARY KEY, NAME TEXT NOT NULL)";
         try {
             stmt.executeUpdate(sql);
@@ -47,7 +46,7 @@ public class DB_Connection {
         }
     }
 
-    public void showTables() { 
+    public void showTables() {
         try {
             String sql = "SELECT name FROM sqlite_master WHERE type='table'";
             stmt.execute(sql);
@@ -60,7 +59,8 @@ public class DB_Connection {
         }
     }
 
-    public void dropTable(String tableName) { 
+    @Override
+    public void dropTable(String tableName) {
         String sql = "DROP TABLE IF EXISTS " + tableName;
         try {
             stmt.executeUpdate(sql);
@@ -70,7 +70,8 @@ public class DB_Connection {
         }
     }
 
-    public void insertData(String tableName, int id, String name) { 
+    @Override
+    public void insertData(String tableName, int id, String name) {
         String sql = "INSERT INTO " + tableName + " (ID, NAME) VALUES (" + id + ", '" + name + "')";
         try {
             stmt.executeUpdate(sql);
@@ -80,7 +81,8 @@ public class DB_Connection {
         }
     }
 
-    public void updateData(String tableName, int id, String name) { 
+    @Override
+    public void updateData(String tableName, int id, String name) {
         String sql = "UPDATE " + tableName + " SET NAME = '" + name + "' WHERE ID = " + id;
         try {
             stmt.executeUpdate(sql);
@@ -89,6 +91,4 @@ public class DB_Connection {
             System.err.println("SQL Error: " + e.getMessage());
         }
     }
-
-   
 }
