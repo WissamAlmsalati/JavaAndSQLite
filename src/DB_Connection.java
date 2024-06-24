@@ -1,7 +1,12 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DB_Connection implements IDatabaseOperations {
 
@@ -90,5 +95,19 @@ public class DB_Connection implements IDatabaseOperations {
         } catch (SQLException e) {
             System.err.println("SQL Error: " + e.getMessage());
         }
+    }
+
+    public List<String> getTableNames() {
+        List<String> tableNames = new ArrayList<>();
+        try {
+            String sql = "SELECT name FROM sqlite_master WHERE type='table'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                tableNames.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            System.err.println("SQL Error: " + e.getMessage());
+        }
+        return tableNames;
     }
 }
